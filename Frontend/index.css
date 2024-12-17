@@ -1,0 +1,240 @@
+body {
+    background-color: #f8f5f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    padding-top: 80px;
+
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #4a2c23;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 28px;
+        color: white;
+        margin: 0;
+    }
+
+    header nav a {
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+        margin: 0 15px;
+        transition: color 0.3s;
+    }
+
+    header nav a:hover {
+        color: #d98259;
+    }
+
+    section {
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .hero {
+        background-color: #f4a460;
+        padding: 50px 20px;
+    }
+
+    .hero img {
+        width: 80%;
+        max-width: 700px;
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+
+    .hero img:hover {
+        transform: scale(1.05);
+    }
+
+    .hero h2 {
+        font-size: 36px;
+        margin: 20px 0;
+        color: #4a2c23;
+    }
+
+    .hero p {
+        font-size: 18px;
+        color: #333;
+    }
+
+    #img1 {
+        height: 500px;
+        object-fit: contain;
+    }
+
+    .conversation-section {
+        background-color: #f4f1ec;
+        padding: 50px 20px;
+    }
+
+    .conversation-section h2 {
+        font-size: 32px;
+        color: #4a2c23;
+        margin-bottom: 20px;
+    }
+
+    .conversation-section p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .conversation-section img {
+        width: 90%;
+        max-width: 400px;
+        margin: 20px 10px;
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+
+    .conversation-section img:hover {
+        transform: scale(1.05);
+    }
+
+    .signup-section {
+        background-color: #4a2c23;
+        color: white;
+        padding: 0;
+        height: 200px;
+        border-top: 3px solid #d98259;
+    }
+
+    .signup-section h2 {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .signup-container {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .signup-container input {
+        width: 100%;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+    }
+
+    .signup-container button, .signup-button {
+        padding: 15px 20px;
+        width: 100%;
+        background-color: #d98259;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .signup-container button:hover, .signup-button:hover {
+        background-color: #c37450;
+    }
+
+    .contact-us-section {
+        background-color: #eab99a;
+        padding: 50px 20px;
+    }
+
+    .contact-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .contact-text {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .contact-text p {
+        color: #55381d;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .contact-text h2 {
+        font-size: 28px;
+        margin: 20px 0;
+    }
+
+    .contact-text button {
+        padding: 15px 30px;
+        background-color: #4a2c23;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s;
+    }
+
+    .contact-text button:hover {
+        background-color: #613c33;
+    }
+
+    .contact-image {
+        flex: 1;
+        text-align: center;
+    }
+
+    .contact-image img {
+        width: 80%;
+        max-width: 300px;
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+
+    .contact-image img:hover {
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        header nav a {
+            margin: 10px 0;
+        }
+
+        .contact-container {
+            flex-direction: column;
+        }
+
+        .contact-text, .contact-image {
+            flex: 100%;
+            max-width: 100%;
+        }
+
+        .contact-image img {
+            width: 60%;
+            max-width: 200px;
+        }
+    }
+}

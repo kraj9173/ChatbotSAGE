@@ -1,0 +1,183 @@
+body {
+    background-color: #f8f5f2;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #4a2c23; 
+    
+}
+
+header h1 {
+    font-size: 28px;
+    color: white;
+    margin: 0;
+}
+
+header nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+header nav a:hover {
+    color: #d98259;
+}
+
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.signup-section {
+    background-color: #f2b092f3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    padding: 0;
+}
+
+.signup-section h2 {
+    font-size: 36px;  
+    margin-bottom: 30px; 
+}
+
+.signup-container {
+    max-width: 600px; 
+    width: 100%;
+    padding: 40px;  
+    background-color: white;
+    border: 2px solid #d98259;
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signup-container input {
+    width: 100%;
+    padding: 18px; 
+    margin: 12px 0;  
+    border-radius: 10px;  
+    border: 1px solid #ccc;
+    font-size: 18px; 
+}
+
+.signup-container button {
+    padding: 18px 24px;  
+    width: 100%;
+    background-color: #d98259;
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    cursor: pointer;
+    font-size: 20px; 
+    transition: background-color 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.signup-container button:hover {
+    background-color: #c37450;
+}
+
+.contact-us-section {
+    background-color: #eab99a;
+    padding: 50px 20px;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-text {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.contact-text p {
+    color: #55381d;
+    font-size: 16px;
+    margin: 0;
+}
+
+.contact-text h2 {
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+.contact-text button {
+    padding: 15px 30px;
+    background-color: #4a2c23;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.contact-text button:hover {
+    background-color: #613c33;
+}
+
+.contact-image {
+    flex: 1;
+    text-align: center;
+}
+
+.contact-image img {
+    width: 80%;
+    max-width: 300px;
+    border-radius: 15px;
+    transition: transform 0.3s;
+}
+
+.contact-image img:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav a {
+        margin: 10px 0;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-text, .contact-image {
+        flex: 100%;
+        max-width: 100%;
+    }
+
+    .contact-image img {
+        width: 60%;
+        max-width: 200px;
+    }
+}

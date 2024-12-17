@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage - Your Historical Guide</title>
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .contact-info {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+            color: #4a2c23;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .slideshow-container {
+            position: relative;
+            max-width: 100%;
+            height: 500px; 
+            margin: auto;
+            overflow: hidden;
+            border-radius: 15px;
+            background-color: #f4a460;
+        }
+
+        .slides {
+            display: none;
+            height: 100%; 
+        }
+
+        .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s;
+        }
+
+        .slides img:hover {
+            transform: scale(1.05);
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .dots-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Sage - Your Historical Guide</h1>
+        <nav>
+            <a href="#contact">Contact Us</a>
+            <a href="#about">About Us</a>
+            <a href="signup.html">Login</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="slideshow-container">
+            <div class="slides">
+                <img src="https://th.bing.com/th/id/OIG1.ay0Q_m6nV.esrVpYWjyI?pid=ImgGn" alt="History Illustration 1" id = "img1">
+            </div>
+            <div class="slides">
+                <img src="Red%20Fort.jpg" alt="Red Fort" onclick="showImageInfo(1)">
+            </div>
+            <div class="slides">
+                <img src="Taj%20Mahal.jpg" alt="Taj Mahal" onclick="showImageInfo(2)">
+            </div>
+            <div class="slides">
+                <img src="https://i.pinimg.com/736x/20/ef/2e/20ef2efb0dd30d2908bfc91a73fcd28f.jpg" alt="Nalanda University" onclick="showImageInfo(3)">
+            </div>
+            <div class="slides">
+                <img src="Hawa%20Mahal.jpg" alt="Hawa Mahal" onclick="showImageInfo(4)">
+            </div>
+        </div><div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+        <h2>Chat About Any History Query</h2>
+        <p>An AI-powered app that lets you have life-like conversations about history.</p>
+    </section>
+
+    <!-- Conversation Section -->
+    <section class="conversation-section" id="about">
+        <h2>Have In-Depth Conversations</h2>
+        <p>Transform your students' learning with our program for educators. With our AI models, you will have more control over the content and factual information. Want to bring a chapter of a book to life? Get in touch and we can help you create an exciting and engaging experience for your students.</p>
+        <div>
+            <img src="https://th.bing.com/th/id/OIG1.yAktEN5aNhZ2PQuuJfSb?w=1024&h=1024&rs=1&pid=ImgDetMain" alt="History App Screenshot 1">
+        </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section class="signup-section">
+        <h2>👇 Want to Try it! Sign Up Now 👇</h2>
+        <div class="signup-container">
+            <a href="signup.html" class="signup-button">Login / Sign Up</a>
+        </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section class="contact-us-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-text">
+                <h2>Want to Contact us?</h2>
+                <button onclick="showContactInfo()" class="contact-button">Contact Us</button>
+                <div class="contact-info" id="contact-info">
+                    <a href="mailto:Sage@gmail.com">Email Us: Sage@gmail.com</a>
+                    <a href="tel:+91 34567 89088">Call Us: +91 34567 89088</a>
+                </div>
+            </div>
+            <div class="contact-image">
+                <img src="https://th.bing.com/th/id/OIG2.IcNa_fCmwI7aBbpV_wi7?pid=ImgGn" alt="History App Screenshot 2">
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlides();
+        });
+
+        let slideIndex = 0;
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("dot");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 4000); 
+        }
+
+        function currentSlide(n) {
+            showSpecificSlide(slideIndex = n);
+        }
+
+        function showSpecificSlide(n) {
+            let i;
+            let slides = document.getElementsByClassName("slides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+
+        function showImageInfo(imageIndex) {
+            let fileName = "";
+            switch(imageIndex) {
+                case 1:
+                    fileName = "Red%20Fort.html"; 
+                    break;
+                case 2:
+                    fileName = "Taj%20Mahal.html"
+                    break;
+                case 3:
+                    fileName = "Nalanda%20University.html"
+                    break;
+                case 4:
+                    fileName = "Hawa%20Mahal.html"
+                    break;
+                default:
+                    fileName = "#";
+                    break;
+            }
+            window.location.href = fileName;
+        }
+
+        function showContactInfo() {
+            var contactInfo = document.getElementById('contact-info');
+            if (contactInfo.style.display === "none") {
+                contactInfo.style.display = "block";
+            } else {
+                contactInfo.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

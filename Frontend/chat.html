@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sage - Your Historical Guide</title>
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+    
+    <header>
+        <h1>Sage - Your Historical Guide</h1>
+        <nav>
+            <a href="index.html#contact">Contact Us</a>
+            <a href="index.html#about">About Us</a>
+            <a href="signUp.html">Login</a>
+        </nav>
+    </header>
+
+    <div id="chatContainer" class="chat-container">
+        <div id="imageFrame" class="image-frame">
+            <img src="chat1.jpg" alt="Welcome" class="welcome-image">
+        </div>
+        <div class="chatbox" id="chatbox">
+            <!-- Chat messages will be appended here dynamically -->
+        </div>
+        <div class="chat-input">
+            <!-- User input field -->
+            <input id="userInput" type="text" placeholder="Type your query here..." />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="chat.js"></script> <!-- Link to the chat.js script -->
+</body>
+</html>
