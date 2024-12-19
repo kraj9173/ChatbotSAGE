@@ -5,9 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup - Sage</title>
     <link rel="stylesheet" href="signUp.css">
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBE16RJRE7Tvns9SVTwtFjkbQSQRYJ0ONg",
+            authDomain: "chatbotsage-e6ea7.firebaseapp.com",
+            projectId: "chatbotsage-e6ea7",
+            storageBucket: "chatbotsage-e6ea7.firebasestorage.app",
+            messagingSenderId: "289070576912",
+            appId: "1:289070576912:web:52ce09f6c185abf160a195",
+            measurementId: "G-P7NQF32T0M"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app); // Firebase Authentication instance
+        const analytics = getAnalytics(app);
+
+        // DOM elements
+        const signupToggle = document.getElementById('signup-toggle');
+        const loginToggle = document.getElementById('login-toggle');
+        const signupForm = document.getElementById('signup-form');
+        const loginForm = document.getElementById('login-form');
+        const errorMessage = document.getElementById('error-message');
+        const passwordToggles = document.querySelectorAll('.password-toggle');
+
+        // Show error message
+        const showError = (message) => {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        };
+
+        // Toggle functionality for form switching
+        signupToggle.addEventListener('click', () => {
+            signupToggle.classList.add('active');
+            loginToggle.classList.remove('active');
+            signupForm.style.display = 'block';
+            loginForm.style.display = 'none';
+            errorMessage.style.display = 'none';
+        });
+
+        loginToggle.addEventListener('click', () => {
+            loginToggle.classList.add('active');
+            signupToggle.classList.remove('active');
+            signupForm.style.display = 'none';
+            loginForm.style.display = 'block';
+            errorMessage.style.display = 'none';
+        });
+
+        // Password visibility toggle
+        passwordToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const passwordInput = toggle.previousElementSibling;
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    toggle.textContent = '🙈'; // Hide eye
+                } else {
+                    passwordInput.type = 'password';
+                    toggle.textContent = '👁️'; // Show eye
+                }
+            });
+        });
+
+        // Sign Up functionality
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value.trim();
+            const name = document.getElementById('signup-name').value.trim();
+
+            if (!email || !password || !name) {
+                showError("All fields are required. Please fill out the form completely.");
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                showError("Please enter a valid email address.");
+                return;
+            }
+
+            if (password.length < 6) {
+                showError("Password is too short. Please use at least 6 characters.");
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                await updateProfile(user, { displayName: name });
+                window.location.href = "chat.html";
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    showError("This email is already in use. Please log in or use another email.");
+                } else if (error.code === 'auth/network-request-failed') {
+                    showError("Network error. Please check your internet connection and try again.");
+                } else {
+                    showError("Failed to sign up. " + error.message);
+                }
+            }
+        });
+
+        // Login functionality
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            if (!email || !password) {
+                showError("Both email and password are required.");
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                showError("Please enter a valid email address.");
+                return;
+            }
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = "chat.html";
+            } catch (error) {
+                if (error.code === 'auth/user-not-found') {
+                    showError("User not found. Redirecting to Sign-Up page.");
+                    signupToggle.click();
+                } else if (error.code === 'auth/wrong-password') {
+                    showError("Incorrect password. Please try again.");
+                } else if (error.code === 'auth/network-request-failed') {
+                    showError("Network error. Please check your internet connection and try again.");
+                } else {
+                    showError("Login failed. " + error.message);
+                }
+            }
+        });
+    </script>
 </head>
 <body>
-    <!-- Header Section -->
     <header>
         <h1>Sage - Your Historical Guide</h1>
         <nav>
@@ -17,15 +157,36 @@
         </nav>
     </header>
 
-    <!-- Signup Section -->
     <section class="signup-section">
-        <h2>Sign Up</h2>
+        <div class="toggle-container">
+            <div id="signup-toggle" class="toggle-button active">Sign Up</div>
+            <div id="login-toggle" class="toggle-button">Login</div>
+        </div>
+
         <div class="signup-container">
-            <form action="chat.html">
-                <input type="email" placeholder="Email" required>
-                <input type="password" placeholder="Password" required>
-                <input type="text" placeholder="Name" required>
-                <button type="submit">Login / Sign Up</button>
+            <div id="error-message" style="display: none; color: red; margin-bottom: 15px;"></div>
+
+            <!-- Sign Up Form -->
+            <form id="signup-form">
+                <h2>Sign Up</h2>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <div style="position: relative; width: 100%;">
+                    <input type="password" id="signup-password" placeholder="Password" required>
+                    <span class="password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                </div>
+                <input type="text" id="signup-name" placeholder="Name" required>
+                <button type="submit">Sign Up</button>
+            </form>
+
+            <!-- Login Form -->
+            <form id="login-form" style="display: none;">
+                <h2>Login</h2>
+                <input type="email" id="login-email" placeholder="Email" required>
+                <div style="position: relative; width: 100%;">
+                    <input type="password" id="login-password" placeholder="Password" required>
+                    <span class="password-toggle" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">👁️</span>
+                </div>
+                <button type="submit">Login</button>
             </form>
         </div>
     </section>

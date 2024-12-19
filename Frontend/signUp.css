@@ -1,3 +1,4 @@
+/* Body Styling */
 body {
     background-color: #f8f5f2;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -5,16 +6,15 @@ body {
     margin: 0;
     padding: 0;
     height: 100%;
-
 }
 
+/* Header Styling */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 50px;
-    background-color: #4a2c23; 
-    
+    background-color: #4a2c23;
 }
 
 header h1 {
@@ -35,11 +35,7 @@ header nav a:hover {
     color: #d98259;
 }
 
-section {
-    padding: 50px 20px;
-    text-align: center;
-}
-
+/* Sign-Up Section Styling */
 .signup-section {
     background-color: #f2b092f3;
     color: white;
@@ -51,42 +47,41 @@ section {
     padding: 0;
 }
 
-.signup-section h2 {
-    font-size: 36px;  
-    margin-bottom: 30px; 
-}
-
+/* Sign-Up Container */
 .signup-container {
-    max-width: 600px; 
+    max-width: 600px;
     width: 100%;
-    padding: 40px;  
+    padding: 40px;
     background-color: white;
     border: 2px solid #d98259;
-    border-radius: 15px; 
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Input Fields Styling */
 .signup-container input {
     width: 100%;
-    padding: 18px; 
-    margin: 12px 0;  
-    border-radius: 10px;  
+    padding: 18px;
+    margin: 12px 0;
+    border-radius: 10px;
     border: 1px solid #ccc;
-    font-size: 18px; 
+    font-size: 18px;
+    box-sizing: border-box;
 }
 
+/* Button Styling */
 .signup-container button {
-    padding: 18px 24px;  
+    padding: 18px 24px;
     width: 100%;
     background-color: #d98259;
     color: white;
     border: none;
-    border-radius: 10px; 
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 20px; 
+    font-size: 20px;
     transition: background-color 0.3s;
     text-decoration: none;
     display: inline-block;
@@ -97,66 +92,72 @@ section {
     background-color: #c37450;
 }
 
-.contact-us-section {
-    background-color: #eab99a;
-    padding: 50px 20px;
-}
-
-.contact-container {
+/* Toggle Button Styling */
+.toggle-container {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 10px; /* Reduced margin */
 }
 
-.contact-text {
+.toggle-button {
     flex: 1;
-    padding: 20px;
-    text-align: center;
-}
-
-.contact-text p {
-    color: #55381d;
-    font-size: 16px;
-    margin: 0;
-}
-
-.contact-text h2 {
-    font-size: 28px;
-    margin: 20px 0;
-}
-
-.contact-text button {
-    padding: 15px 30px;
-    background-color: #4a2c23;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    padding: 15px;
     cursor: pointer;
-    font-size: 18px;
-    transition: background-color 0.3s;
-}
-
-.contact-text button:hover {
-    background-color: #613c33;
-}
-
-.contact-image {
-    flex: 1;
     text-align: center;
+    background-color: #fff3e6;
+    border: 1px solid #d98259;
+    color: #d98259;
+    font-size: 18px;
+    border-radius: 12px 12px 0 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-.contact-image img {
-    width: 80%;
-    max-width: 300px;
-    border-radius: 15px;
-    transition: transform 0.3s;
+.toggle-button.active {
+    background-color: #d98259;
+    color: white;
+    font-weight: bold;
 }
 
-.contact-image img:hover {
-    transform: scale(1.05);
+/* Error Message Styling */
+#error-message {
+    display: none;
+    color: red;
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
+/* Password Visibility Toggle */
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Form Styling for Both Sign-Up and Login */
+#signup-form, #login-form {
+    width: 100%;
+}
+
+/* Input Fields in Both Forms */
+#signup-form input, #login-form input {
+    width: 100%;
+    padding: 18px;
+    margin: 12px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+/* Adjust Login Form Margin */
+#login-form {
+    margin-top: 0; /* Reduced margin on top of login form */
+}
+
+/* Media Query Adjustments for Smaller Screens */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
@@ -167,17 +168,16 @@ section {
         margin: 10px 0;
     }
 
-    .contact-container {
+    .signup-container {
+        padding: 20px;
+    }
+
+    .toggle-container {
         flex-direction: column;
+        gap: 10px;
     }
 
-    .contact-text, .contact-image {
-        flex: 100%;
-        max-width: 100%;
-    }
-
-    .contact-image img {
-        width: 60%;
-        max-width: 200px;
+    .toggle-button {
+        font-size: 16px;
     }
 }
